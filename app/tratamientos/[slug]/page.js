@@ -9,8 +9,9 @@ export function generateStaticParams() {
   return treatments.map(({ slug }) => ({ slug }));
 }
 
-export default function Treatment({ params }) {
-  const treatment = treatments.find((item) => item.slug === params.slug);
+export default async function Treatment({ params }) {
+  const { slug } = await params;
+  const treatment = treatments.find((item) => item.slug === slug);
 
   if (!treatment) notFound();
 
